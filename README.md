@@ -22,4 +22,6 @@ npm install -g generator-angular
 
 More information on [Yeoman's website](http://yeoman.io/learning/index.html).
 
+Using Leaflet and leaflet awesome markers.
+
 
