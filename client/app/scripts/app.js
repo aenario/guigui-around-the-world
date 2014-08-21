@@ -8,6 +8,10 @@
  *
  * Main module of the application.
  */
+
+
+
+
 angular
   .module('clientApp', [
     'ngAnimate',
@@ -31,3 +35,5 @@ angular
         redirectTo: '/'
       });
   });
+
+
