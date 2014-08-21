@@ -14,7 +14,7 @@
        */
       var tilesDict = {
         openstreetmap: {
-          url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           options: {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }
