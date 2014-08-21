@@ -68,15 +68,14 @@
           leccoMarker: {
             lat: 45.85,
             lng: 9.38,
-            message: null,
-            focus: true,
+            message: '<img class="challengePic" src="./images/yeoman.png" />Beginning of the lonely trip ... ',
+            focus: false,
             draggable: false,
             icon: icons.mobyMarker
           },
           chileMarker: {
             lat: -33.2,
             lng: -71.36,
-            message: null,
             focus: true,
             draggable: false,
             icon: icons.challengeMarker
@@ -84,7 +83,6 @@
           newZealandMarker: {
             lat: -45.52,
             lng: 170.50,
-            message: null,
             focus: true,
             draggable: false,
             icon: icons.stepMarker

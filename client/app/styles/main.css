@@ -81,3 +81,7 @@ body {
 .angular-leaflet-map{
   height : 400px;
 }
+
+.challengePic {
+  display : block ;
+}
