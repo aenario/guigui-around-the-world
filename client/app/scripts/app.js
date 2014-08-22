@@ -20,7 +20,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'leaflet-directive'
+    'leaflet-directive',
+    'textAngular'
   ])
   .config(function ($routeProvider) {
     $routeProvider

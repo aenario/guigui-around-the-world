@@ -8,9 +8,9 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('CreatetripCtrl', function ($scope) {
+  .controller('CreatetripCtrl', function ($scope, guid) {
 
-    $scope.formTrip = {};
+    $scope.formTrip = {id: guid()};
     $scope.saveTrip = function(){
       console.log($scope.formTrip);
     };
