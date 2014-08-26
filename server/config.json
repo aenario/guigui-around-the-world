@@ -1,0 +1,6 @@
+{
+    "adminuser": "test",
+    "adminpass": "test",
+    "dbpath": "/dbtestgui",
+    "attachments": "./upload"
+}
