@@ -51,7 +51,7 @@
         center: {
             lat: 40.095,
             lng: -3.823,
-            zoom: 1
+            zoom: 2.5
         },
         paths: {
           p1:{
