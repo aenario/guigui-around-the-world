@@ -15,6 +15,7 @@ describe('Trips API', function () {
 
   // empty db
   before(function (done) {
+    this.timeout(10000);
     require('../models/database').empty(done);
   });
 

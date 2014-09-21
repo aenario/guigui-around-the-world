@@ -24,6 +24,9 @@ db.empty = function (callback) {
     ids.push(key);
   });
   stream.on('end', function () {
+    if (ids.length === 0) {
+      return callback(null);
+    }
     db.batch(ids.map(function (id) {
       return {type: 'del', key: id};
     }), callback);
