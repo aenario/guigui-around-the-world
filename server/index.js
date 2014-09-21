@@ -10,7 +10,7 @@ var app = express();
 
 var multipart = function (req, res, next) {
   var form = new multiparty.Form({
-    uploadDir: './raw-uploads/'
+    uploadDir: path.join(__dirname, './raw-uploads/')
   });
   form.parse(req, function (err, fields, files) {
     if (err) {
