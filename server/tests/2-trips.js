@@ -7,6 +7,9 @@ var request = require('request'),
 
 describe('Trips API', function () {
 
+  // place it here to use in various tests
+  var testTripID = null;
+
   // start server
   before(function (done) {
     this.app = require('../index');
@@ -44,6 +47,7 @@ describe('Trips API', function () {
   });
   describe('POST /trips', function () {
 
+
     it('need auth', function (done) {
 
       var formData = {
@@ -62,7 +66,6 @@ describe('Trips API', function () {
     });
 
     it('create doc', function (done) {
-      var context = this;
       var req = request({
         method: 'POST',
         auth: {
@@ -76,7 +79,7 @@ describe('Trips API', function () {
         res.statusCode.should.equal(200);
         body = JSON.parse(body);
         body.should.have.property('id');
-        context.id = body.id;
+        testTripID = body.id;
         body.should.have.property('attachments');
         body.should.have.property('some', 'fields');
         body.should.not.have.property('attachment1.json');
@@ -96,7 +99,7 @@ describe('Trips API', function () {
   describe('GET /trips/id/attachment', function () {
 
     it('works', function (done) {
-      var url = 'http://localhost:8888/trips/' + this.id + '/index.js';
+      var url = 'http://localhost:8888/trips/' + testTripID + '/index.js';
       request(url, function (err, res, body) {
         should.not.exist(err);
         res.statusCode.should.equal(200);
@@ -114,7 +117,7 @@ describe('Trips API', function () {
           user: config.adminuser,
           pass: config.adminpass
         },
-        url: 'http://localhost:8888/admin/trips/' + this.id,
+        url: 'http://localhost:8888/admin/trips/' + testTripID,
         form: true
       }, function (err, res, body) {
         should.not.exist(err);
