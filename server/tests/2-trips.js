@@ -86,8 +86,8 @@ describe('Trips API', function () {
       var form = req.form();
       form.append('some', 'fields');
       form.append('what', 'ever');
-      form.append("attachment1.json", fs.createReadStream('./package.json'));
-      form.append("attachment2.js", fs.createReadStream('./index.js'));
+      form.append("attachment1.json", fs.createReadStream('./server/package.json'));
+      form.append("attachment2.js", fs.createReadStream('./server/index.js'));
 
     });
 
