@@ -12,7 +12,7 @@
 
 
 
-angular
+var app = angular
   .module('clientApp', [
     'ngAnimate',
     'ngCookies',
@@ -26,16 +26,16 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/map.html',
+        controller: 'MapCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/createtrip', {
+      .when('/trips/create', {
         templateUrl: 'views/createtrip.html',
         controller: 'CreatetripCtrl'
+      })
+      .when('/trips/:id', {
+        templateUrl: 'views/showtrip.html',
+        controller: 'ShowtripCtrl'
       })
       .otherwise({
         redirectTo: '/'

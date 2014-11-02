@@ -7,8 +7,8 @@
  * # CreatetripCtrl
  * Controller of the clientApp
  */
-angular.module('clientApp')
-  .controller('CreatetripCtrl', function ($scope, Trip, guid) {
+
+app.controller('CreatetripCtrl', function ($scope, Trip, guid) {
 
     $scope.formTrip = new Trip({id: guid()});
     $scope.saveTrip = function(){
