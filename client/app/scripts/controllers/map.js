@@ -106,33 +106,28 @@ app.controller('MapCtrl', function ($scope) {
   
   
   var getChallengeMarkers = function(){
-    var index = 1;
-    var markers = {};        
+    var markers = new Array();        
     angular.forEach(challengesList, function(challenge){
-      var placeName = "challenge" + index
-      console.log(placeName);
-      markers[placeName] = {
+      markers.push({
         lat : challenge.lat,
         lng : challenge.lng,
         message : + challenge.name,
         icon: icons.challengeIcon
-      }
-      index++;
+      })
     });
     return markers;
   }
 
   var getTripMarkers = function(){
     var index = 1;
-    var markers = {};        
+    var markers = new Array();        
     angular.forEach(tripList, function(trip){
-      var placeName = index + trip.name
-      markers[placeName] = {
+      markers.push({
         lat : trip.lat,
         lng : trip.lng,
         message : index + '. ' + trip.name,
         icon: icons.stepIcon
-      }
+      })
       index++;
     });
     return markers;
@@ -157,8 +152,11 @@ app.controller('MapCtrl', function ($scope) {
   }
 
   $scope.markers = getTripMarkers();
-  // var challengesMarker = getChallengeMarkers();
-  // $scope.markers = $scope.markers.concat(challengesMarker);
+  var challengesMarker = getChallengeMarkers();
+  if( challengesMarker instanceof Array){
+    console.log("coucou");$
+    $scope.markers = $scope.markers.concat(challengesMarker);    
+  }
 
   $scope.tiles = tilesDict.thunderforestLandscape;
   $scope.defaults = {
