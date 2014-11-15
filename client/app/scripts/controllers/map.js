@@ -11,15 +11,10 @@ app.controller('MapCtrl', function ($scope) {
   /** tilesDict
    * Set new tiles to create a new layer
    */
-  var tilesDict = {
-    thunderforestLandscape: {
-      url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-      options: {
-        attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-      }
-    }
-  };
-
+  $scope.defaults = {
+    tileLayer: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+    maxZoom : 14
+  }
   /** Set icons for the map
    * From Font Awesome
    * See https://github.com/lvoogdt/Leaflet.awesome-markers
@@ -158,8 +153,4 @@ app.controller('MapCtrl', function ($scope) {
     $scope.markers = $scope.markers.concat(challengesMarker);    
   }
 
-  $scope.tiles = tilesDict.thunderforestLandscape;
-  $scope.defaults = {
-    scrollWheelZoom : false
-  }
 });
