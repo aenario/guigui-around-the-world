@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('tripsService', function tripsService($http) {
+  .factory('Trip', function tripsService($http) {
 
     var Trip = function Trip(attributes) {
       var key;

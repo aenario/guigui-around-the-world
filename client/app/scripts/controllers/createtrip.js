@@ -8,10 +8,10 @@
  * Controller of the clientApp
  */
 
-app.controller('CreatetripCtrl', function ($scope, tripsService, guid) {
-    $scope.formTrip = new tripsService({id: guid()});
+app.controller('CreatetripCtrl', function ($scope, Trip, guid) {
+    $scope.formTrip = new Trip({id: guid()});
     $scope.saveTrip = function(){
-        form = angular.element('form#trip-form')[0]
+        var form = angular.element('form#trip-form')[0]
         $scope.formTrip.save(form);
     };
 

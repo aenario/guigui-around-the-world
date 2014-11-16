@@ -24,18 +24,18 @@ var multipart = function (req, res, next) {
 
 var trips = resourceCtrl('trip');
 
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client/app')));
 if (process.env.NODE_ENV === 'test') {
   app.use(morgan('dev'));
 }
 
 
-app.get('/trips/', trips.list);
-app.get('/trips/:id/:attachment', trips.attachment);
+app.get('/api/trips/', trips.list);
+app.get('/api/trips/:id/:attachment', trips.attachment);
 
-app.use('/admin', basicAuth(config.adminuser, config.adminpass));
-app.post('/admin/trips', multipart, trips.put);
-app.delete('/admin/trips/:id', trips.del);
+app.use('/api/admin', basicAuth(config.adminuser, config.adminpass));
+app.post('/api/admin/trips', multipart, trips.put);
+app.delete('/api/admin/trips/:id', trips.del);
 
 
 if (module.parent) {
