@@ -149,8 +149,7 @@ app.controller('MapCtrl', function ($scope, Trip) {
   $scope.markers = getTripMarkers();
   var challengesMarker = getChallengeMarkers();
   if( challengesMarker instanceof Array){
-    console.log("coucou");$
-    $scope.markers = $scope.markers.concat(challengesMarker);
+    $scope.markers = $scope.markers.concat(challengesMarker);    
   }
 
 });
