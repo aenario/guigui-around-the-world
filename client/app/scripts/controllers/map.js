@@ -7,7 +7,7 @@
    * # MapCtrl
    * Controller of the clientApp
    */
-app.controller('MapCtrl', function ($scope) {
+app.controller('MapCtrl', function ($scope, Trip) {
   /** tilesDict
    * Set new tiles to create a new layer
    */
@@ -79,7 +79,7 @@ app.controller('MapCtrl', function ($scope) {
   ];
 
   //Get all challenges position here
-  var challengesList = [        
+  var challengesList = [
     {
       name: "Santiago de Chile",
       lat:-33.4,
@@ -101,12 +101,12 @@ app.controller('MapCtrl', function ($scope) {
       lng:-71.4
     }
   ];
-  
 
-  
-  
+
+
+
   var getChallengeMarkers = function(){
-    var markers = new Array();        
+    var markers = new Array();
     angular.forEach(challengesList, function(challenge){
       markers.push({
         lat : challenge.lat,
@@ -120,7 +120,7 @@ app.controller('MapCtrl', function ($scope) {
 
   var getTripMarkers = function(){
     var index = 1;
-    var markers = new Array();        
+    var markers = new Array();
     angular.forEach(tripList, function(trip){
       markers.push({
         lat : trip.lat,
@@ -136,7 +136,7 @@ app.controller('MapCtrl', function ($scope) {
   $scope.center = {
     lat : positionMoby.lat,
     lng : positionMoby.lng,
-    zoom : 5          
+    zoom : 5
   };
 
   $scope.paths = {
@@ -148,14 +148,14 @@ app.controller('MapCtrl', function ($scope) {
         { lat: 48.83, lng: 2.37 },
         { lat: 41.91, lng: 12.48 }
       ],
-    } 
+    }
   }
 
   $scope.markers = getTripMarkers();
   var challengesMarker = getChallengeMarkers();
   if( challengesMarker instanceof Array){
     console.log("coucou");$
-    $scope.markers = $scope.markers.concat(challengesMarker);    
+    $scope.markers = $scope.markers.concat(challengesMarker);
   }
 
   $scope.tiles = tilesDict.thunderforestLandscape;

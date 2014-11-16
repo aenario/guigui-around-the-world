@@ -45,7 +45,7 @@ describe('Trips API', function () {
       });
     });
   });
-  describe('POST /trips', function () {
+  describe('POST /admin/trips', function () {
 
 
     it('need auth', function (done) {

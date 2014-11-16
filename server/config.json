@@ -1,6 +1,6 @@
 {
     "adminuser": "test",
     "adminpass": "test",
-    "dbpath": "./dbtestgui",
+    "dbpath": "/dbtestgui",
     "attachments": "./upload"
 }

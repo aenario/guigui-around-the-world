@@ -25,7 +25,7 @@ angular.module('clientApp')
       var tmpArray = [];
       $http({
         method: 'GET',
-        url: '/trips/'
+        url: 'http://localhost:3000/trips/'
       }).success(function (data) {
         data.forEach(function (tripData) {
           tmpArray.push(new Trip(tripData));
@@ -35,17 +35,20 @@ angular.module('clientApp')
     };
 
     Trip.prototype.save = function Tripsave(form) {
+      self = this;
       return $http({
         method: 'PUT',
-        url: '/trips/' + this.id,
+        url: 'http://localhost:3000/trips/' + this.id,
         data: new FormData(form)
+      }).success(function (data) {
+        angular.extend(self, data);
       });
     };
 
     Trip.prototype.remove = function Tripremove() {
       return $http({
         method: 'DELETE',
-        url: '/trips/' + this.id
+        url: 'http://localhost:3000/trips/' + this.id
       });
     };
 
