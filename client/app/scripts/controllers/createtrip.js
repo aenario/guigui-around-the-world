@@ -12,7 +12,8 @@ app.controller('CreatetripCtrl', function ($scope, Trip, guid) {
 
     $scope.formTrip = new Trip({id: guid()});
     $scope.saveTrip = function(){
-        $scope.formTrip.save()
+        form = angular.element('form#trip-form')[0]
+        $scope.formTrip.save(form);
     };
 
     //adding some code
