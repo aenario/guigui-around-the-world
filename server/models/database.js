@@ -50,7 +50,11 @@ db.Model = function (bucketname, validator) {
       });
 
       stream.on('data', function (obj) {
-        out.push(obj);
+        try {
+          out.push(JSON.parse(obj.value));
+        }catch (err){
+          console.log("MAFORMED JSON", obj.value);
+        }
       });
       stream.on('error', function (err) {
         cb(err);
@@ -72,7 +76,7 @@ db.Model = function (bucketname, validator) {
           return cb(err);
         }
         var key = bucketname + '_' + doc.id;
-        db.put(key, doc, function (err) {
+        db.put(key, JSON.stringify(doc), function (err) {
           cb(err, doc);
         });
       });

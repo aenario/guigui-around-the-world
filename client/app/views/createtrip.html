@@ -1,4 +1,4 @@
-<form class="form-horizontal" id="trip-form" role="form" ng-controller="CreatetripCtrl">
+<form class="form-horizontal" id="trip-form" role="form">
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-4">
@@ -8,15 +8,16 @@
   <div class="form-group">
     <label for="pointStart" class="col-sm-2 control-label">Start from</label>
     <div class="col-sm-4">
-      <input class="form-control" id="pointStart" placeholder="Start" ng-model="formTrip.pointStart">
+      <input class="form-control" id="pointStart" placeholder="Start" ng-model="formTrip.pointStart" ng-blur="queryNominatim('pointStart')">
     </div>
   </div>
   <div class="form-group">
     <label for="pointEnd" class="col-sm-2 control-label">End</label>
     <div class="col-sm-4">
-      <input class="form-control" id="pointEnd" placeholder="End" ng-model="formTrip.pointEnd">
+      <input class="form-control" id="pointEnd" placeholder="End" ng-model="formTrip.pointEnd" ng-blur="queryNominatim('pointEnd')">
     </div>
   </div>
+  <p>{{pointStartLat}} x {{pointStartLng}} --> {{pointEndLat}} x {{pointEndLat}}</p>
 
   <div class="row">
         <label for="fileToUpload">Select a File to Upload</label><br />
@@ -31,21 +32,14 @@
                 <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
             </span>)
         </div>
-        <input type="button" ng-click="uploadFile()" value="Upload" />
-        <div ng-show="progressVisible">
-            <div class="percent">{{progress}}%</div>
-            <div class="progress-bar">
-                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
-            </div>
-        </div>
     </div>
 
   <text-angular ng-model="formTrip.text"></text-angular>
-  </br>
+  <br/>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" ng-click="saveTrip()" class="btn btn-success">Save</button>
     </div>
   </div>
 </form>
-</br>
+<br/>

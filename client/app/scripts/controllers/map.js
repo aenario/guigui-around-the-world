@@ -50,28 +50,7 @@ app.controller('MapCtrl', function ($scope, Trip) {
   };
 
 
-  var tripList = [
-    {
-      name: "NewZealand",
-      lat: -45.52,
-      lng: 170.50,
-    },
-    {
-      name: "London",
-      lat: 51.50,
-      lng: -0.082,
-    },
-    {
-      name: "Paris",
-      lat: 48.83,
-      lng: 2.37,
-    },
-    {
-      name: "Roma",
-      lat: 41.91,
-      lng: 12.48,
-    }
-  ];
+  $scope.tripList = Trip.list();
 
   //Get all challenges position here
   var challengesList = [
@@ -114,19 +93,37 @@ app.controller('MapCtrl', function ($scope, Trip) {
   }
 
   var getTripMarkers = function(){
+    console.log("coucou getTripMarkers ", $scope.tripList)
     var index = 1;
-    var markers = new Array();
-    angular.forEach(tripList, function(trip){
+    var path = [{lat: 0, lng: 0}];
+    var markers = [{lat: 0, lng: 0,message:'Lyon', icon: icons.stepIcon}];
+    angular.forEach($scope.tripList, function(trip){
+      console.log("A trip ...")
+      path.push({
+        lat : parseFloat(trip.pointStartLat),
+        lng : parseFloat(trip.pointStartLng)
+      });
+      
       markers.push({
-        lat : trip.lat,
-        lng : trip.lng,
-        message : index + '. ' + trip.name,
+        lat : parseFloat(trip.pointStartLat),
+        lng : parseFloat(trip.pointStartLng),
+        message : index + '. ' + trip.Name,
         icon: icons.stepIcon
       })
+      $scope.paths.p1 = {
+        color: '#008000',
+        weight: 8,
+        latlngs: path
+      }
+      
       index++;
     });
+    console.log (path);
     return markers;
-  }
+
+  }    
+  
+  $scope.paths = {}
 
   $scope.center = {
     lat : positionMoby.lat,
@@ -134,22 +131,15 @@ app.controller('MapCtrl', function ($scope, Trip) {
     zoom : 5
   };
 
-  $scope.paths = {
-    p1:{
-      color: '#008000',
-      weight: 8,
-      latlngs: [
-        { lat: 51.50, lng: -0.082 },
-        { lat: 48.83, lng: 2.37 },
-        { lat: 41.91, lng: 12.48 }
-      ],
-    }
-  }
-
-  $scope.markers = getTripMarkers();
   var challengesMarker = getChallengeMarkers();
-  if( challengesMarker instanceof Array){
-    $scope.markers = $scope.markers.concat(challengesMarker);    
-  }
+  $scope.$watch('tripList.length', function(newvalue, oldvalue){
+    console.log("WATCHER HERE", newvalue, $scope.tripList);
+    if (newvalue === 0) return null 
+    $scope.markers = getTripMarkers()
+    if( challengesMarker instanceof Array){
+      $scope.markers = $scope.markers.concat(challengesMarker);    
+    }
+  });
+  
 
 });

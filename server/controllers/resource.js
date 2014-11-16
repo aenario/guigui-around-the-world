@@ -58,7 +58,7 @@ module.exports = function RessourceCtrl(modelName) {
 
       deleteExisting: ['existing', function (callback, state) {
         async.forEach(state.existing, function (fileName, cb) {
-          if (-1 === req.attachments.indexOf(fileName)) {
+          if (-1 === req.body.attachments.indexOf(fileName)) {
             fs.unlink(path.join(attachmentsDir, fileName), cb);
           } else {
             cb(null);

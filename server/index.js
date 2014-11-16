@@ -33,7 +33,9 @@ if (process.env.NODE_ENV === 'test') {
 app.get('/api/trips/', trips.list);
 app.get('/api/trips/:id/:attachment', trips.attachment);
 
+
 app.use('/api/admin', basicAuth(config.adminuser, config.adminpass));
+app.get('/api/admin', function(req, res){res.status(200).send("OK");});
 app.post('/api/admin/trips', multipart, trips.put);
 app.delete('/api/admin/trips/:id', trips.del);
 
