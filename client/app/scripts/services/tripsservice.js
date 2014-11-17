@@ -22,6 +22,7 @@ angular.module('clientApp')
     Trip.adminpass = null
     
     var list = [];
+    var indexedList = [];
 
     // return an array that will be filled
     // with of all Trip instances
@@ -34,23 +35,19 @@ angular.module('clientApp')
           list.pop()
         }
         data.forEach(function (tripData) {
-          list.push(new Trip(tripData));
+          var trip = new Trip(tripData);
+          list.push(trip);
+          indexedList[trip.id] = trip;
         });
       });
       return list;
     };
 
-    // return an array that will be filled
-    // with of all Trip instances
-    Trip.get = function Triplist(id) {
-      $http({
-        method: 'GET',
-        url: 'http://localhost:9000/api/admin/trips/' + id
-      }).success(function (data) {
-        console.log("data is " + data)
-        return data;
-      });
-    };
+
+    Trip.currentTrip = function TripCurrent(id){
+      console.log("indexedList[id] " + indexedList);
+      return indexedList[id];
+    }
 
     Trip.prototype.save = function Tripsave(files) {
       var self = this;

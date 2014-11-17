@@ -33,7 +33,7 @@ var app = angular
         templateUrl: 'views/createtrip.html',
         controller: 'CreatetripCtrl'
       })
-      .when('/trips/:id', {
+      .when('/trips/:tripId', {
         templateUrl: 'views/showtrip.html',
         controller: 'ShowtripCtrl'
       })

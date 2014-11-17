@@ -1,1 +1,13 @@
-<p>This is the showTrip view.</p>
+<div class="container">
+<h1>{{currentTrip.title}}</h1>
+
+	<div>
+	  <leaflet markers="markers" paths="paths" defaults="defaults"></leaflet>
+	</div>
+	
+  <div ng-bind-html="currentTrip.text"></div>
+  <div ng-repeat="image in currentTrip.attachments">
+    <img ng-src="http://localhost:9000/api/trips/{{currentTrip.id}}/{{image}}" />
+  </div>
+
+</div>

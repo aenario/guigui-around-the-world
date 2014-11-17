@@ -87,15 +87,9 @@ db.Model = function (bucketname, validator) {
       db.del(key, cb);
     };
 
-  var get = function(doc, cb) {
-    var key = bucketname + '_' + doc.id;
-    db.get(key, cb);
-  }
-
   return {
     list: list,
     put: put,
-    del: del,
-    get: get
+    del: del
   };
 };

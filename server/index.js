@@ -32,7 +32,6 @@ if (process.env.NODE_ENV === 'test') {
 
 app.get('/api/trips/', trips.list);
 app.get('/api/trips/:id/:attachment', trips.attachment);
-app.get('/api/trips/:id', trips.currentTrip);
 
 
 app.use('/api/admin', basicAuth(config.adminuser, config.adminpass));
