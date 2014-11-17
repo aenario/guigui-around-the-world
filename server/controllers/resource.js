@@ -24,6 +24,12 @@ module.exports = function RessourceCtrl(modelName) {
     res.sendFile(filepath);
   };
 
+  var currentTrip = function(req, res, next) {
+    Model.get({id: req.id}, function(data){
+      return data;
+    });
+  }
+
   var put = function (req, res, next) {
     var key;
     for (key in req.body) {
@@ -122,7 +128,8 @@ module.exports = function RessourceCtrl(modelName) {
     list: list,
     attachment: attachment,
     put: put,
-    del: del
+    del: del,
+    currentTrip: currentTrip
   };
 
 };

@@ -8,10 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('ShowtripCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('ShowtripCtrl', function ($scope, $routeParams, Trip) {
+  	$scope.currentTrip = Trip.get($routeParams.id);
+  	console.log("currentTrip " + $scope.currentTrip);
+
   });

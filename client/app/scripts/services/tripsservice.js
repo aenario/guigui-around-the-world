@@ -40,6 +40,18 @@ angular.module('clientApp')
       return list;
     };
 
+    // return an array that will be filled
+    // with of all Trip instances
+    Trip.get = function Triplist(id) {
+      $http({
+        method: 'GET',
+        url: 'http://localhost:9000/api/admin/trips/' + id
+      }).success(function (data) {
+        console.log("data is " + data)
+        return data;
+      });
+    };
+
     Trip.prototype.save = function Tripsave(files) {
       var self = this;
       var formdata = new FormData();
