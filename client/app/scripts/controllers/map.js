@@ -23,19 +23,19 @@ app.controller('MapCtrl', function ($scope, Trip) {
     mobyIcon: {
       type: 'awesomeMarker',
       prefix: 'fa',
-      icon: 'thumbs-o-up',
-      markerColor: 'darkblue'
+      icon: 'smile-o',
+      markerColor: 'orange'
     },
     challengeIcon: {
       type: 'awesomeMarker',
       prefix: 'fa',
-      icon: 'paw',
+      icon: 'picture-o',
       markerColor: 'orange'
     },
       stepIcon: {
       type: 'awesomeMarker',
       prefix: 'fa',
-      icon: 'life-ring',
+      icon: 'car',
       markerColor: 'darkgreen'
     }
   };
@@ -44,8 +44,6 @@ app.controller('MapCtrl', function ($scope, Trip) {
     lat: 45.85,
     lng: 9.38,
     message: '<img class="challengePic" src="./images/yeoman.png" />Beginning of the lonely trip ... ',
-    focus: false,
-    draggable: false,
     icon: icons.mobyIcon
   };
 
@@ -83,6 +81,7 @@ app.controller('MapCtrl', function ($scope, Trip) {
     var markers = new Array();
     angular.forEach(challengesList, function(challenge){
       markers.push({
+        layer: "challenge",
         lat : challenge.lat,
         lng : challenge.lng,
         message : + challenge.name,
@@ -95,16 +94,17 @@ app.controller('MapCtrl', function ($scope, Trip) {
   var getTripMarkers = function(){
     console.log("coucou getTripMarkers ", $scope.tripList)
     var index = 1;
-    var path = [{lat: 0, lng: 0}];
-    var markers = [{lat: 0, lng: 0,message:'Lyon', icon: icons.stepIcon}];
+    var path = [{lat : positionMoby.lat, lng: positionMoby.lng}];
+    var markers = [positionMoby];
     angular.forEach($scope.tripList, function(trip){
       console.log("A trip ...")
       path.push({
         lat : parseFloat(trip.pointStartLat),
         lng : parseFloat(trip.pointStartLng)
       });
-      
+
       markers.push({
+        layer : 'trip',
         lat : parseFloat(trip.pointStartLat),
         lng : parseFloat(trip.pointStartLng),
         message : index + '. ' + trip.Name,
@@ -112,17 +112,18 @@ app.controller('MapCtrl', function ($scope, Trip) {
       })
       $scope.paths.p1 = {
         color: '#008000',
+        layer: "trip",
         weight: 8,
         latlngs: path
       }
-      
+
       index++;
     });
     console.log (path);
     return markers;
 
-  }    
-  
+  }
+
   $scope.paths = {}
 
   $scope.center = {
@@ -134,12 +135,37 @@ app.controller('MapCtrl', function ($scope, Trip) {
   var challengesMarker = getChallengeMarkers();
   $scope.$watch('tripList.length', function(newvalue, oldvalue){
     console.log("WATCHER HERE", newvalue, $scope.tripList);
-    if (newvalue === 0) return null 
+    if (newvalue === 0) return null
     $scope.markers = getTripMarkers()
     if( challengesMarker instanceof Array){
-      $scope.markers = $scope.markers.concat(challengesMarker);    
+      $scope.markers = $scope.markers.concat(challengesMarker);
     }
   });
-  
+
+  $scope.layers = {
+    "baselayers": {
+      "OpenStreetMap": {
+        "name": "OpenStreetMap",
+        "url": 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+        "type": "xyz"
+      }
+    },
+    "overlays": {
+      "challenge": {
+        "name": "challenge",
+        "type": "group",
+        "visible": true
+        },
+      "trip": {
+        "name": "trip",
+        "type": "group",
+        "visible": true
+        }
+      }
+    };
+
+/*  $scope.toggleLayer = function(type){
+    $scope.layers.overlays[type].visible = !$scope.layers.overlays[type].visible ;
+  }*/
 
 });

@@ -1,36 +1,56 @@
 /* Space out content a bit */
-body {
+.content {  
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
   padding-right: 40px;
 }
 
+body {
+  background-color: #fff2e0;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+.footer {  
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
+  background-color: #f9960b;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
-  padding-bottom: 19px;
+  padding-bottom: 20px;
+  text-align: left;
+  font-size: 48px;
+  color: #774500;
+}
+.header .nav{
+  padding-right: 150px;
 }
 
+/*#imageHeader {
+  z-index : 2;
+}
+*/
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
+  color: #774500;
   border-top: 1px solid #e5e5e5;
+  position:absolute;
+  bottom:0;
+  height: 60px;
+  width: 100%;
 }
 
 /* Customize container */
@@ -81,8 +101,8 @@ body {
 }
 
 .angular-leaflet-map{
-  height : 500px;
-  width : 80%;
+  height : 600px;
+  width: 100  %;
 }
 
 .challengePic {
